@@ -35,18 +35,18 @@ _____
 
 #Exercise 1:
 
-```{r}
+```{r echo=FALSE}
 library(ggplot2)
 library(magrittr)
 ```
 
 
-```{r import the data, eval=TRUE, echo = FALSE}
+```{r import the data, eval=TRUE}
 link="https://github.com/EvansDataScience/data/raw/master/crime.RData" #only this case you do not need to change the name since it is Rdata
 load(file = url(link))
 ```
 
-```{r Exercise_1, eval = TRUE, echo = FALSE}
+```{r Exercise_1, eval = TRUE}
 CrimeCol=table(crime$crimecat,crime$Occurred.DayTime)%>%
          prop.table(margin = 2)%>%   # 2 is % by column
          "*"(100)%>%
@@ -58,7 +58,7 @@ colnames(df.C)=c('Crime','Daytime','Percent')
 
 
 
-```{r Turn the bars into lollipop with the right components, eval = TRUE, echo = FALSE}
+```{r Turn the bars into lollipop with the right components, eval = TRUE}
 TitleText = "Seattle Crime Cases By Types"
 SourceText = "Seattle Open Data"
 
@@ -76,7 +76,7 @@ _____
 <span style="color:red"> Exercise 2:<br> Change the heatplot to ascending order, where intensity goes from yellow to purple.
 </span>
 
-```{r}
+```{r }
 base  = ggplot(df.C, aes(x = Daytime, y = reorder(Crime, -Percent), fill = Percent)) 
 heat1 = base +  geom_tile() 
 heat2 = heat1 +scale_fill_gradient(low = "yellow", 
@@ -215,7 +215,7 @@ crimesByNeigh=as.data.frame(crimesByNeigh)%>%rownames_to_column()
 num_num=merge(daysByNeigh,crimesByNeigh)
 ```
 
-```{r density,eval=FALSE}
+```{r density}
 library(ggrepel)
 base = ggplot(num_num, aes(daysByNeigh,crimesByNeigh)) 
 scatp1 = base +  stat_density_2d(aes(fill = ..density..), 
